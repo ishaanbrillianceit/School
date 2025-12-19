@@ -1,0 +1,38 @@
+<!-- Bootstrap 5 Notices List with Modal -->
+
+<div class="container my-5">
+  <h2 class="mb-4 text text-center text-decoration-underline fs-1">
+    School Notices
+  </h2>
+  <p class="mb-4">
+    Stay updated with the latest announcements and events at God Grace School.
+    Here you will find important notices, and other relevant information.
+  </p>
+  <table class="table">
+    <thead>
+      <tr>
+        <th class="background">Sr No.</th>
+        <th class="background">Category</th>
+        <th class="background">Date</th>
+        <th class="background">Notice</th>
+        <th class="background text-end">Read in Detail</th>
+      </tr>
+    </thead>
+    <tbody>
+      @for(notice of noticeArray()[0]; track $index){
+        <tr>
+        <td>{{$index + 1}}</td>
+        <td>{{notice.category}}</td>
+        <td>{{notice.date | date}}</td>
+        <td>{{notice.title}}</td>
+        <td class="text-end text-decoration-underline cursor-pointer">
+          <a data-bs-toggle="modal" data-bs-target="#myModal" (click)="showNoticeInfo(notice)"> Read More </a>
+        </td>
+      </tr>
+      }
+    </tbody>
+  </table>
+</div>
+
+<!-- Modal -->
+<app-notice-modal [description]="infoData()"></app-notice-modal>

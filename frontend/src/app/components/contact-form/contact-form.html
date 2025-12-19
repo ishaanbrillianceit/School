@@ -1,0 +1,123 @@
+<div class="container-fluid my-5">
+  <div class="row justify-content-center">
+    <div class="col-md-12 col-lg-10">
+      <div class="card shadow rounded-4">
+        <div
+          class="card-header background text-white text-center rounded-top-4"
+        >
+          <h4 class="mb-0"><i class="fa fa-envelope me-2"></i>Contact Us</h4>
+        </div>
+        <div class="card-body p-4">
+          <form [formGroup]="contactForm" (ngSubmit)="onSubmit()">
+            <div class="mb-3">
+              <label for="name" class="form-label"
+                ><i class="fa fa-user me-1"></i>Name<span class="text-danger">*</span></label
+              >
+              <input
+                type="text"
+                class="form-control"
+                id="name"
+                formControlName="name"
+                placeholder="Your Name"
+                required
+              />
+              @if(contactForm.controls['name'].touched || contactForm.controls['name'].dirty){
+                <div class="text-danger">
+                  @if(contactForm.controls['name'].errors?.['required'] )
+                  { Name is required }
+                  @else if(contactForm.controls['name'].errors?.['minlength'] )
+                  { Name must be at least 4 characters long }
+                </div>
+              }
+            </div>
+            <div class="mb-3">
+              <label for="email" class="form-label"
+                ><i class="fa fa-envelope me-1"></i>Email<span class="text-danger">*</span></label
+              >
+              <input
+                type="email"
+                class="form-control"
+                id="email"
+                formControlName="email"
+                placeholder="you@example.com"
+                required
+              />
+              @if(contactForm.controls['email'].touched || contactForm.controls['email'].dirty){
+                <div class="text-danger">
+                  @if(contactForm.controls['email'].errors?.['required'] )
+                  { Email is required }
+                </div>
+              }
+            </div>
+            <div class="mb-3">
+              <label for="phone" class="form-label"
+                ><i class="fa fa-phone me-1"></i>Phone<span class="text-danger">*</span></label
+              >
+              <input
+                type="tel"
+                class="form-control"
+                id="phone"
+                formControlName="phone"
+                placeholder="+91-9876543210"
+                required
+              />
+              @if(contactForm.controls['phone'].touched || contactForm.controls['phone'].dirty){
+                <div class="text-danger">
+                  @if(contactForm.controls['phone'].errors?.['required'] )
+                  { Phone is required }
+                </div>
+              }
+            </div>
+            <div class="mb-3">
+              <label for="subject" class="form-label"
+                ><i class="fa fa-book me-1"></i>Subject<span class="text-danger">*</span></label
+              >
+              <input
+                type="text"
+                class="form-control"
+                id="subject"
+                formControlName="subject"
+                placeholder="Subject"
+                required
+              />
+              @if(contactForm.controls['subject'].touched || contactForm.controls['subject'].dirty){
+                <div class="text-danger">
+                  @if(contactForm.controls['subject'].errors?.['required'] )
+                  { Subject is required }
+                </div>
+              }
+            </div>
+            <div class="mb-3">
+              <label for="message" class="form-label"
+                ><i class="fa fa-comment me-1"></i>Message<span class="text-danger">*</span></label
+              >
+              <textarea
+                class="form-control"
+                id="message"
+                formControlName="message"
+                rows="4"
+                placeholder="Type your message here..."
+                required
+              ></textarea>
+              @if(contactForm.controls['message'].touched || contactForm.controls['message'].dirty){
+                <div class="text-danger">
+                  @if(contactForm.controls['message'].errors?.['required'] )
+                  { Message is required }
+                </div>
+              }
+            </div>
+            <div class="d-grid">
+              <button
+              [disabled]="contactForm.invalid"
+                type="submit"
+                class="btn btn-primary background btn-lg rounded-pill"
+              >
+                <i class="fa fa-paper-plane me-2"></i>Send Message
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
