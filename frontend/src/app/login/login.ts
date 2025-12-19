@@ -23,9 +23,16 @@ export class Login {
     let body = this.loginForm.value
     this.apiService.login(body.email, body.password).subscribe({
       next: (response: any) => {
-        console.log(response)
         alert(response.message)
-        this.router.navigateByUrl('dashboard')
+        if(response){
+          const token = response.user?.token
+          localStorage.setItem('token', token)
+          localStorage.setItem('user', JSON.stringify(response?.user))
+          this.router.navigateByUrl('dashboard')
+        }
+      },
+      error(error: any){
+        console.log(error);
       }
     })
   }

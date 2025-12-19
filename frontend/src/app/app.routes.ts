@@ -11,6 +11,8 @@ import { Disclaimer } from './pages/disclaimer/disclaimer';
 import { Dashboard } from './dashboard/dashboard';
 import { Login } from './login/login';
 import { Notices } from './features/notices/notices';
+import { authGuard } from './guards/auth-guard';
+import { loginGuard } from './guards/login-guard';
 
 export const routes: Routes = [
     {path: "", component: Home},
@@ -23,7 +25,7 @@ export const routes: Routes = [
     {path: "about-us", component: About},
     {path: "privacy-policy", component: PrivacyPolicy},
     {path: "disclaimer", component: Disclaimer},
-    {path: "dashboard", component: Dashboard},
-    {path: "login", component: Login},
+    {path: "dashboard", component: Dashboard, canActivate: [authGuard]},
+    {path: "login", component: Login, canActivate: [loginGuard]},
     {path: "**", component: Home},
 ];

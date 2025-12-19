@@ -14,4 +14,23 @@ export class Auth {
     let body = {email, password}
     return this.http.post(`${environment.apiUrl}/user/login/`,body)
   }
+  logout(){
+    localStorage.removeItem('token')
+  }
+  isLoggedIn(): boolean{
+    let isLocalStorage:boolean
+    if(localStorage.getItem('token')){
+      console.log(localStorage.getItem('token'))
+      isLocalStorage=true
+    }
+    else{
+      isLocalStorage= false
+    }
+
+    return isLocalStorage
+  }
+  getToken(): string | null{
+    return localStorage.getItem('token')
+  }
+
 }
