@@ -10,12 +10,13 @@
     </tr>
   </thead>
   <tbody>
+    @for(contact of contactsArray(); track $index){
     <tr>
-      <td>John</td>
-      <td>Doe</td>
-      <td>Doe</td>
-      <td>Doe</td>
-      <td>Doe</td>
+      <td>{{contact.name}}</td>
+      <td>{{contact.email}}</td>
+      <td>{{contact.phone}}</td>
+      <td>{{contact.subject}}</td>
+      <td>{{contact.message}}</td>
       <td class="text-end">
         <!-- <i class="fa fa-pencil me-4"></i> -->
         <i
@@ -26,6 +27,7 @@
         <i class="fa fa-trash text-danger"></i>
       </td>
     </tr>
+    }
   </tbody>
 </table>
 

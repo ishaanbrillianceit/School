@@ -4,28 +4,34 @@ import { environment } from '../../environments/environment';
 import { Observable } from 'rxjs';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class Api {
-
   constructor(private http: HttpClient) {}
-    getNotice():Observable<any>{
-      return this.http.get(`${environment.apiUrl}/notice/`)
-    }
+  getNotice(): Observable<any> {
+    return this.http.get(`${environment.apiUrl}/notice/`);
+  }
 
-    getEvent(): Observable<any>{
-      return this.http.get(`${environment.apiUrl}/event/`)
-    }
+  getEvent(): Observable<any> {
+    return this.http.get(`${environment.apiUrl}/event/`);
+  }
 
-    getGallery(): Observable<any>{
-      return this.http.get(`${environment.apiUrl}/gallery/`)
-    }
+  getGallery(): Observable<any> {
+    return this.http.get(`${environment.apiUrl}/gallery/`);
+  }
 
-    getTeacher(): Observable<any>{
-      return this.http.get(`${environment.apiUrl}/teacher/`)
-    }
+  getTeacher(): Observable<any> {
+    return this.http.get(`${environment.apiUrl}/teacher/`);
+  }
+  getContact(): Observable<any> {
+    return this.http.get(`${environment.apiUrl}/contact/`);
+  }
 
-    formSubmitted(data: any){
-      return this.http.post(`${environment.apiUrl}/contact/`, data)
-    }
+  formSubmitted(data: any) {
+    return this.http.post(`${environment.apiUrl}/contact/`, data);
+  }
+
+  eventFormSubmitted(data: any) {
+    return this.http.post(`${environment.apiUrl}/event/`, data);
+  }
 }

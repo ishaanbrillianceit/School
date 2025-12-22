@@ -1,3 +1,15 @@
 <app-header></app-header>
+<!--<div class="container">
+  @for (box of boxes; track box; let i = $index) {
+  <div
+    class="box"
+    [class.empty]="box === null"
+    (click)="box !== null && movebox(i)"
+  >
+    {{ box }}
+  </div>
+  }
+</div>-->
+
 <router-outlet></router-outlet>
 <app-footer></app-footer>

@@ -4,33 +4,42 @@ import { Router } from '@angular/router';
 import { environment } from '../../environments/environment';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class Auth {
-
-  constructor(private http: HttpClient, private router: Router) {
+  constructor(private http: HttpClient, private router: Router) {}
+  login(email: string, password: string) {
+    let body = { email, password };
+    return this.http.post(`${environment.apiUrl}/user/login/`, body);
   }
-  login(email: string, password: string){
-    let body = {email, password}
-    return this.http.post(`${environment.apiUrl}/user/login/`,body)
+  logout() {
+    localStorage.removeItem('token');
   }
-  logout(){
-    localStorage.removeItem('token')
-  }
-  isLoggedIn(): boolean{
-    let isLocalStorage:boolean
-    if(localStorage.getItem('token')){
-      console.log(localStorage.getItem('token'))
-      isLocalStorage=true
-    }
-    else{
-      isLocalStorage= false
+  isLoggedIn(): boolean {
+    let isLocalStorage: boolean;
+    if (localStorage.getItem('token')) {
+      console.log(localStorage.getItem('token'));
+      isLocalStorage = true;
+    } else {
+      isLocalStorage = false;
     }
 
-    return isLocalStorage
-  }
-  getToken(): string | null{
-    return localStorage.getItem('token')
+    return isLocalStorage;
   }
 
+  isAdmin(): boolean {
+    let isUserAdmin: boolean = false;
+    let admin: any = JSON.parse(localStorage.getItem('user') || '{}');
+    if (admin?.role === 'admin') {
+      console.log(admin);
+      isUserAdmin = true;
+    } else {
+      isUserAdmin = false;
+    }
+    return isUserAdmin;
+  }
+
+  getToken(): string | null {
+    return localStorage.getItem('token');
+  }
 }

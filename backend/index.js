@@ -10,7 +10,7 @@ import NoticeRouter  from './routes/notice.routes.js'
 import TeacherRouter from './routes/teacher.routes.js'
 import UserRouter from './routes/user.routes.js'
 
-dotenv.config({path: "./config/.env"})
+dotenv.config({path: "./.env"})
 
 connectDB()
 
@@ -30,12 +30,6 @@ app.use("/api/gallery", GalleryRouter)
 app.use("/api/notice", NoticeRouter)
 app.use("/api/teacher", TeacherRouter)
 app.use("/api/user", UserRouter)
-
-app.get('/api/notice', (req, res) => {
-  res.set('Cache-Control', 'no-store');
-  res.json(notices);
-});
-
 
 app.listen(port, ()=>{
     console.log(`Server is running on port: ${port}`)

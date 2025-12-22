@@ -20,12 +20,13 @@
     </tr>
   </thead>
   <tbody>
+    @for(item of eventArray(); track $index){
     <tr>
-      <td>Event 1</td>
-      <td>2023-10-01</td>
-      <td>10:00 AM</td>
-      <td>Auditorium</td>
-      <td>2023-09-15</td>
+      <td>{{item.title}}</td>
+      <td>{{item.date | date: "yyyy-MM-dd"}}</td>
+      <td>{{item.date | date: "HH:mm"}}</td>
+      <td>{{item.location}}</td>
+      <td>{{item.createdAt | date: "yyyy-MM-dd"}}</td>
       <td class="text-end">
         <i
           class="fa fa-pencil me-4"
@@ -35,6 +36,8 @@
         <i class="fa fa-trash text-danger"></i>
       </td>
     </tr>
+
+    }
   </tbody>
 </table>
 
@@ -54,7 +57,7 @@
 
       <!-- Modal body -->
       <div class="modal-body">
-        <form>
+        <form [formGroup]="addEventForm" (ngSubmit)="onSubmit()">
           <div class="row">
             <!-- Part 1: Event Details -->
             <div class="col-md-6">
@@ -62,6 +65,7 @@
                 <label for="eventTitle" class="form-label">Event Title</label>
                 <input
                   type="text"
+                  formControlName="title"
                   class="form-control"
                   id="eventTitle"
                   placeholder="Enter event title"
@@ -69,11 +73,21 @@
               </div>
               <div class="mb-3">
                 <label for="eventDate" class="form-label">Event Date</label>
-                <input type="date" class="form-control" id="eventDate" />
+                <input
+                  type="date"
+                  class="form-control"
+                  id="eventDate"
+                  formControlName="eventDate"
+                />
               </div>
               <div class="mb-3">
                 <label for="eventTime" class="form-label">Event Time</label>
-                <input type="time" class="form-control" id="eventTime" />
+                <input
+                  type="time"
+                  class="form-control"
+                  id="eventTime"
+                  formControlName="eventTime"
+                />
               </div>
               <div class="mb-3">
                 <label for="location" class="form-label">Location</label>
@@ -81,7 +95,20 @@
                   type="text"
                   class="form-control"
                   id="location"
+                  formControlName="location"
                   placeholder="Enter event location"
+                />
+              </div>
+              <div class="mb-3">
+                <label for="location" class="form-label"
+                  >Short description</label
+                >
+                <input
+                  type="text"
+                  class="form-control"
+                  id="shortDescription"
+                  formControlName="shortDescription"
+                  placeholder="Enter Short Description"
                 />
               </div>
             </div>
@@ -95,29 +122,30 @@
                   class="form-control flex-grow-1"
                   id="eventDescription"
                   rows="8"
+                  formControlName="description"
                   placeholder="Enter event description"
                 ></textarea>
               </div>
             </div>
           </div>
+          <div class="modal-footer">
+            <button
+              type="submit"
+              class="btn btn-danger background btn-sm"
+              data-bs-dismiss="modal"
+            >
+              Submit
+            </button>
+            <button
+              type="button"
+              class="btn btn-danger btn-sm"
+              data-bs-dismiss="modal"
+            >
+              Close
+            </button>
+          </div>
         </form>
         <!-- Modal footer -->
-        <div class="modal-footer">
-          <button
-            type="button"
-            class="btn btn-danger background btn-sm"
-            data-bs-dismiss="modal"
-          >
-            Submit
-          </button>
-          <button
-            type="button"
-            class="btn btn-danger btn-sm"
-            data-bs-dismiss="modal"
-          >
-            Close
-          </button>
-        </div>
       </div>
     </div>
   </div>
